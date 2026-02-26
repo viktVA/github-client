@@ -1,0 +1,71 @@
+@import '../../styles/Roboto/fonts.css';
+.input  {
+  --color-bg: var(--input-bg);
+  --border-bg: var(--input-border);
+  --color-text: var(--input-text);
+
+  display: inline-flex;
+  padding: var(--space-m) var(--space-xs);
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: var(--color-bg);
+  border-color: var(--border-bg);
+  color: var(--color-text);
+
+  border-radius: var(--border-radius);
+  font-family: 'Roboto';
+  line-height: 20px;
+  width: 100%;
+
+  div {
+    display: inline-block;
+
+  }
+
+  input {
+
+    outline: none;
+    border: none;
+    line-height: 20px;
+    width: 100%;
+    font-family: 'Roboto';
+    font-size: 16px;
+    background: transparent;
+    height: auto;
+
+    &::placeholder {
+      --color-text: var(--input-placeholder);
+
+      font-family: 'Roboto';
+
+    }
+
+    &:disabled {
+      --color-bg: var(--input-bg-disabled);
+      --border-bg: var(--input-border-disabled);
+      --color-text: var(--input-text-disabled);
+
+      cursor: default;
+
+    }
+  }
+
+  .afterSlot {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    margin-left: var(--space-xxs);
+  }
+
+
+  &:focus-within {
+    --color-bg: var(--input-bg-focus);
+    --border-bg: var(--input-border-focus);
+    --color-text: var(--input-text-focus);
+
+    border: 1px solid var(--input-border-focus);
+  }
+
+}

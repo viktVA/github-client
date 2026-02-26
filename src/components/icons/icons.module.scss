@@ -1,0 +1,11 @@
+.icon {
+  &_color-primary {
+    color: #000000;
+  }
+  &_color-secondary {
+    color: #AFADB5;
+  }
+  &_color-accent {
+    color: var(--brand);
+  }
+}
