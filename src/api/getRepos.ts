@@ -1,11 +1,12 @@
 
 import axios from "axios";
 
-type Repo = {
+export type Repo = {
     id: number;
     name: string;
     owner: {
         avatar_url: string;
+        type: string;
     }
     description: string;
     updated_at: string;

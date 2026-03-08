@@ -23,3 +23,6 @@ figure,
 pre {
   margin: 0;
 }
+ul li{list-style: none;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}

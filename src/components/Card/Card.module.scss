@@ -1,9 +1,10 @@
 .card {
+  width: 100%;
   &__row {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 360px;
+    max-width: 419px;
     transition: box-shadow 0.3s ease;
     background-color: var(--card-bg);
     overflow: hidden;
