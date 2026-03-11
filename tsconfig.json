@@ -13,7 +13,8 @@
       "@config/*": ["config/*"],
       "@styles/*": ["styles/*"],
       "@utils/*" : ["utils/*"],
-      "@api/*": ["api/*"]
+      "@api/*": ["api/*"],
+      "@assets": ["assets/*"]
     }
   }
 }
