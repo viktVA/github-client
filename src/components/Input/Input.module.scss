@@ -1,11 +1,13 @@
+@use '@components/variables' as *;
 @import '../../styles/Roboto/fonts.css';
+
 .input  {
-  --color-bg: var(--input-bg);
-  --border-bg: var(--input-border);
-  --color-text: var(--input-text);
+  --color-bg: #{$input-bg};
+  --border-bg: #{$input-border};
+  --color-text: #{$input-text};
 
   display: inline-flex;
-  padding: var(--space-m) var(--space-xs);
+  padding: $space-m $space-xs;
   font-size: 16px;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +16,7 @@
   border-color: var(--border-bg);
   color: var(--color-text);
 
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
   font-family: 'Roboto';
   line-height: 20px;
   width: 100%;
@@ -36,16 +38,20 @@
     height: auto;
 
     &::placeholder {
-      --color-text: var(--input-placeholder);
+      --color-text: #{$input-placeholder};
+      color: var(--color-text);
 
       font-family: 'Roboto';
 
     }
 
     &:disabled {
-      --color-bg: var(--input-bg-disabled);
-      --border-bg: var(--input-border-disabled);
-      --color-text: var(--input-text-disabled);
+      --color-bg: #{$input-bg-disabled};
+      --border-bg: #{$input-border-disabled};
+      --color-text: #{$input-text-disabled};
+      background: var(--color-bg);
+      border-color: var(--border-bg);
+      color: var(--color-text);
 
       cursor: default;
 
@@ -56,16 +62,16 @@
     display: inline-block;
     height: 24px;
     width: 24px;
-    margin-left: var(--space-xxs);
+    margin-left: $space-xxs;
   }
 
 
   &:focus-within {
-    --color-bg: var(--input-bg-focus);
-    --border-bg: var(--input-border-focus);
-    --color-text: var(--input-text-focus);
+    --color-bg: #{$input-bg-focus};
+    --border-bg: #{$input-border-focus};
+    --color-text: #{$input-text-focus};
 
-    border: 1px solid var(--input-border-focus);
+    border: 1px solid #{$input-border-focus};
   }
 
 }

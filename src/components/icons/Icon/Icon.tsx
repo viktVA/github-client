@@ -1,6 +1,4 @@
 import * as React from 'react';
-import CheckIcon from "../CheckIcon";
-import ArrowDownIcon from "../ArrowDownIcon";
 import classNames from "classnames";
 import styles from '../icons.module.scss';
 

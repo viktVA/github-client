@@ -9,7 +9,6 @@ import Input from "@components/Input";
 import Button from "@components/Button";
 import Card from "@components/Card";
 import {workDate} from "@utils/workDate";
-import './RepoListPage.module.scss';
 import {routes} from "@config/routes";
 
 const RepoListPage = () => {
@@ -37,11 +36,18 @@ const RepoListPage = () => {
 
 
     useEffect(() => {
-
-        const screenWidth = window.screen.width;
-        if(screenWidth <= 893) {
-            setCountRep(8);
+        const handleResize = () => {
+            if (window.innerWidth < 893) {
+                setCountRep(8);
+            } else {
+                setCountRep(9);
+            }
         }
+        handleResize();
+        window.addEventListener('resize',handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+
     }, []);
 
 
@@ -52,12 +58,23 @@ const RepoListPage = () => {
 
     const totalPage: number[] = [];
     const maxPage =  Math.ceil(repos.length/countRep);
-    for (let i = 1;i < maxPage - 1; i++) {
-        totalPage.push(i+1);
+    if (maxPage <= 5) {
+        for (let i = 2; i < maxPage; i++) {
+            totalPage.push(i)
+        }
+    } else {
+        if (page <= 3) {
+            totalPage.push(2,3,4);
+        } else if (page >= maxPage - 2) {
+            totalPage.push(maxPage - 3, maxPage - 2, maxPage - 1)
+        } else {
+            totalPage.push(page - 1, page, page + 1);
+        }
+
     }
 
-    const strokeArrowRight = (page === 1) ? '#AFADB5' : '#151411';
-    const strokeArrowLeft = (page  === maxPage) ? '#AFADB5' : '#151411';
+    const strokeArrowLeft = (page === 1) ? '#AFADB5' : '#151411';
+    const strokeArrowRight = (page  === maxPage) ? '#AFADB5' : '#151411';
 
     //MultiDropDown
 
@@ -135,6 +152,7 @@ const RepoListPage = () => {
                       <div className={styles["cards-grid__items"]}>
                           {repos.slice((page - 1) * countRep, (repos.length < page * countRep) ? repos.length : page * countRep).map(item => (
                               <Card className={classNames(styles["cards-grid__item"],styles.item)}
+                                    key={item.id}
                                     onClick={() => navigate(routes.repository.create(String(item.id)))}
                                     image={item.owner.avatar_url}
                                     captionSlot={
@@ -166,7 +184,7 @@ const RepoListPage = () => {
                                xmlns="http://www.w3.org/2000/svg">
                               <path
                                   d="M20.12 26.5599L11.4267 17.8666C10.4 16.8399 10.4 15.1599 11.4267 14.1333L20.12 5.43994"
-                                  stroke={strokeArrowRight} strokeWidth="1.5" strokeMiterlimit="10"
+                                  stroke={strokeArrowLeft} strokeWidth="1.5" strokeMiterlimit="10"
                                   strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
 
@@ -206,7 +224,7 @@ const RepoListPage = () => {
                                xmlns="http://www.w3.org/2000/svg">
                               <path
                                   d="M11.88 26.5599L20.5733 17.8666C21.6 16.8399 21.6 15.1599 20.5733 14.1333L11.88 5.43994"
-                                  stroke={strokeArrowLeft} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
+                                  stroke={strokeArrowRight} strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"
                                   strokeLinejoin="round"/>
                           </svg>
 

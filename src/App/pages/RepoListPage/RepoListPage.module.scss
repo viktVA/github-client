@@ -1,3 +1,5 @@
+@use '@components/variables' as *;
+
 .list-repositories {
   margin-top: 30px;
   width: 100%;
@@ -14,9 +16,19 @@
     margin-bottom: 60px;
 
     h1 {
+
+
+      @media (max-width: 1024px ) {
+        font-size: 40px;
+      }
       @media (max-width: 768px ) {
         font-size: 34px;
       }
+      @media (max-width: 375px ) {
+        font-size: 30px;
+      }
+
+
     }
 
   }
@@ -30,7 +42,7 @@
     &-type {
       width: 24.2%;
       min-width: 300px;
-      max-width: 20px;
+      max-width: 320px;
       margin-bottom: 20px;
     }
 
@@ -57,7 +69,8 @@
     grid-auto-flow: row;
     justify-items: center;
     gap: 80px;
-    
+
+
     @media (min-width: 1024px ) {
       grid-template-columns: repeat(3, minmax(200px, 1fr));
     }
@@ -133,7 +146,7 @@
 
   &__item {
     --bg-link: transparent;
-    --color-link: var(--text-primary);
+    --color-link: #{$text-primary};
 
     display: inline-flex;
     padding: 10px 14.5px;
@@ -144,8 +157,8 @@
     }
 
     &_active {
-      --bg-link: var(--button-primary-bg);
-      --color-link: var(--button-primary-text);
+      --bg-link: #{$button-primary-bg};
+      --color-link: #{$button-primary-text};
     }
 
 

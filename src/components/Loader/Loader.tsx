@@ -8,7 +8,7 @@ export type LoaderProps = {
   color?: string;
 };
 
-const Loader: React.FC<LoaderProps> = ({ size, className ,color = '#1f883d', ...restProps}) => {
+const Loader: React.FC<LoaderProps> = ({ size, className ,color = 'var(--loader-bg)', ...restProps}) => {
 
     if (size === 's') {
         return (

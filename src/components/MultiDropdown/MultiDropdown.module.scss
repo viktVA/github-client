@@ -1,24 +1,26 @@
+@use '@components/variables' as *;
+
 .multidropdown {
   &__input {
 
   }
   &__options {
-    border-radius: var(--border-radius);
-    margin-top: var(--space-xxs);
+    border-radius: $border-radius;
+    margin-top: $space-xxs;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    background-color: var(--dropdown-options-bg);
+    background-color: $dropdown-options-bg;
 
     .multidropdown__items {
 
 
       .multidropdown__item {
-        padding: var(--space-s) var(--space-xs);
+        padding: $space-s $space-xs;
 
         &__item_selected {
 
         }
         p:hover {
-          color: var(--text-secondary);
+          color: $text-secondary;
         }
 
       }

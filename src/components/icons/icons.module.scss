@@ -1,11 +1,13 @@
+@use '@components/variables' as *;
+
 .icon {
   &_color-primary {
-    color: #000000;
+    color: $text-primary;
   }
   &_color-secondary {
-    color: #AFADB5;
+    color: $text-secondary;
   }
   &_color-accent {
-    color: var(--brand);
+    color: $brand;
   }
 }

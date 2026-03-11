@@ -1,30 +1,32 @@
+@use '@components/variables' as *;
+
 .button {
-  --color-text: var(--button-primary-text);
-  --color-bg: var(--button-primary-bg);
+  --color-text: #{$button-primary-text};
+  --color-bg: #{$button-primary-bg};
 
   min-height: 52px;
-  padding: 17px var(--space-l);
+  padding: 17px $space-l;
   background-color: var(--color-bg);
   color: var(--color-text);
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
   display: flex;
   align-items: center;
   cursor: pointer;
 
   div {
     display: inline-block;
-    margin-right: var(--space-xxs);
+    margin-right: $space-xxs;
   }
 
   &__loading {
-    padding-block: var(--space-s);
+    padding-block: $space-s;
     transition: background-color 0.3s ease;
 
 
     &_color {
-      --color-bg: var(--button-primary-bg) !important;
-      --color-text: var(--button-primary-text);
+      --color-bg: #{$button-primary-bg} !important;
+      --color-text: #{$button-primary-text};
 
 
     }
@@ -32,21 +34,21 @@
 
 
   &:hover:not(:disabled) {
-    --color-text: var(--button-primary-text-hover);
-    --color-bg: var(--button-primary-bg-hover);
+    --color-text: #{$button-primary-text-hover};
+    --color-bg: #{$button-primary-bg-hover};
 
   }
 
 
   &:active:not(:disabled) {
-    --color-text: var(--button-primary-text-active);
-    --color-bg: var( --button-primary-bg-active);
+    --color-text: #{$button-primary-text-active};
+    --color-bg: #{$button-primary-bg-active};
 
   }
 
   &:disabled {
-    --color-text: var(--button-primary-text-disabled);
-    --color-bg: var(--button-primary-bg-disabled);
+    --color-text: #{$button-primary-text-disabled};
+    --color-bg: #{$button-primary-bg-disabled};
 
     cursor: default;
   }
