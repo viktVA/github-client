@@ -14,7 +14,8 @@
       "@styles/*": ["styles/*"],
       "@utils/*" : ["utils/*"],
       "@api/*": ["api/*"],
-      "@assets": ["assets/*"]
+      "@assets/*": ["assets/*"],
+      "@custom_types/*": ["custom_types/*"]
     }
   }
 }
