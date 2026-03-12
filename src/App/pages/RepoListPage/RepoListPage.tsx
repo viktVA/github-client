@@ -1,15 +1,17 @@
-import {useState, useEffect, CSSProperties} from 'react';
+import {useState, useEffect} from 'react';
 import {Link, useNavigate, useSearchParams} from 'react-router-dom';
-import {getRepos, Repo} from "../../../api/getRepos";
+import {getRepos } from "@api/getRepos";
 import styles from './RepoListPage.module.scss';
 import Text from "@components/Text";
 import classNames from 'classnames';
-import MultiDropdown, {Option} from "@components/MultiDropdown";
+import MultiDropdown from "@components/MultiDropdown";
+import type {Option} from "@components/MultiDropdown";
 import Input from "@components/Input";
 import Button from "@components/Button";
 import Card from "@components/Card";
 import {workDate} from "@utils/workDate";
 import {routes} from "@config/routes";
+import type {Repo} from "@custom_types/repos";
 
 const RepoListPage = () => {
     const [repos, setRepos] = useState<Repo[]>([]);
@@ -153,7 +155,7 @@ const RepoListPage = () => {
                           {repos.slice((page - 1) * countRep, (repos.length < page * countRep) ? repos.length : page * countRep).map(item => (
                               <Card className={classNames(styles["cards-grid__item"],styles.item)}
                                     key={item.id}
-                                    onClick={() => navigate(routes.repository.create(String(item.id)))}
+                                    onClick={() => navigate(routes.repository.create(item.owner.login, item.name))}
                                     image={item.owner.avatar_url}
                                     captionSlot={
                                         <div className={styles['item__caption']}>

@@ -1,17 +1,6 @@
 
 import axios from "axios";
-
-export type Repo = {
-    id: number;
-    name: string;
-    owner: {
-        avatar_url: string;
-        type: string;
-    }
-    description: string;
-    updated_at: string;
-    stargazers_count: number;
-};
+import type {Repo} from "@custom_types/repos";
 
 export const getRepos  = async (): Promise<Repo[]> => {
     const result = await axios<Repo[]>({
