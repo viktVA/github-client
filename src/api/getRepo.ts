@@ -2,8 +2,8 @@ import axios from "axios";
 import  type {Contributors, RepoInfo} from "@custom_types/repo";
 
 // Получение списка языков которые используются в репозитории
-const getLanguages = async (api: string) => {
-    const list = await axios<object>({
+const getLanguages = async (api: string): Promise<Record<string, number>> => {
+    const list = await axios<Record<string, number>>({
         method: 'get',
         url: `${api}`
     });
@@ -40,12 +40,5 @@ export const getRepo = async (owner: string ,name: string) => {
         languages,
         contributors
     };
-
-
-
     return repoInfo;
-
-
-
-
 };

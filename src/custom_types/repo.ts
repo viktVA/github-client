@@ -17,6 +17,10 @@ export type RepoInfo = {
     forks_count: number;
     languages_url: string;
     contributors_url: string;
-    languages ?: object;
-    contributors ?: Contributors[];
+    owner: {
+        login: string;
+        avatar_url: string;
+    };
+    languages?: Record<string, number>;
+    contributors?: Contributors[];
 };
