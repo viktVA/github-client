@@ -1,9 +1,8 @@
-
-import axios from "axios";
+import axiosInstance from "@api/axiosInstance";
 import type {Repo} from "@custom_types/repos";
 
 export const getRepos  = async (): Promise<Repo[]> => {
-    const result = await axios<Repo[]>({
+    const result = await axiosInstance<Repo[]>({
                method: 'get',
                url: 'https://api.github.com/orgs/ktsstudio/repos'
            });

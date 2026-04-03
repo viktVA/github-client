@@ -37,21 +37,23 @@ const RepoPage = () => {
 
     useEffect(() => {
         const fetch = async () => {
-            try {
-                if (owner !== undefined && name !== undefined) {
-                    setLoading(true);
-                    const result = await getRepo(owner, name);
-                    setRepo(result);
+            if (owner === undefined || name === undefined) return;
 
-                    const readmeResult = await getReadme(owner, name);
-                    setReadme(readmeResult);
-                } else {
-                    throw new Error('No information about owner or name');
-                }
+            try {
+                setLoading(true);
+                const result = await getRepo(owner, name);
+                setRepo(result);
             } catch (error) {
                 console.error(error);
             } finally {
                 setLoading(false);
+            }
+
+            try {
+                const readmeResult = await getReadme(owner, name);
+                setReadme(readmeResult);
+            } catch {
+                // репозиторий может не иметь README
             }
         };
         fetch();

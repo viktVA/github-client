@@ -1,9 +1,9 @@
-import axios from "axios";
+import axiosInstance from "@api/axiosInstance";
 import  type {Contributors, RepoInfo} from "@custom_types/repo";
 
 // Получение списка языков которые используются в репозитории
 const getLanguages = async (api: string): Promise<Record<string, number>> => {
-    const list = await axios<Record<string, number>>({
+    const list = await axiosInstance<Record<string, number>>({
         method: 'get',
         url: `${api}`
     });
@@ -15,7 +15,7 @@ const getLanguages = async (api: string): Promise<Record<string, number>> => {
 
 // Получение списка авторов
 const getContributors = async (api: string) => {
-    const list = await axios<Contributors[]>({
+    const list = await axiosInstance<Contributors[]>({
         method: 'get',
         url: `${api}`
     });
@@ -27,7 +27,7 @@ const getContributors = async (api: string) => {
 
 export const getRepo = async (owner: string ,name: string) => {
 
-    const result = await axios<RepoInfo>({
+    const result = await axiosInstance<RepoInfo>({
         method: 'get',
         url: `https://api.github.com/repos/${owner}/${name}`
     });
