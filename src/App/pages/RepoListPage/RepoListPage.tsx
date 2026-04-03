@@ -39,8 +39,10 @@ const RepoListPage = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 893) {
+            if (window.innerWidth < 893 || (2500 > window.innerWidth && window.innerWidth >= 2000)) {
                 setCountRep(8);
+            }else if(2500 <= window.innerWidth) {
+                setCountRep(10);
             } else {
                 setCountRep(9);
             }
