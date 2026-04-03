@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npm install:*)",
+      "Bash(yarn dev:*)",
+      "Bash(curl -s -I \"https://api.github.com/orgs/ktsstudio/repos\")"
+    ]
+  }
+}

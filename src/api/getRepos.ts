@@ -1,20 +1,8 @@
-
-import axios from "axios";
-
-export type Repo = {
-    id: number;
-    name: string;
-    owner: {
-        avatar_url: string;
-        type: string;
-    }
-    description: string;
-    updated_at: string;
-    stargazers_count: number;
-};
+import axiosInstance from "@api/axiosInstance";
+import type {Repo} from "@custom_types/repos";
 
 export const getRepos  = async (): Promise<Repo[]> => {
-    const result = await axios<Repo[]>({
+    const result = await axiosInstance<Repo[]>({
                method: 'get',
                url: 'https://api.github.com/orgs/ktsstudio/repos'
            });

@@ -8,7 +8,7 @@ export const routes = {
         create: () => "/repositories",
     },
     repository: {
-        mask: "/repositories/:id",
-        create: (id: string) => `/repositories/${id}`,
+        mask: "/repositories/:owner/:name",
+        create: (owner: string, name: string) => `/repositories/${owner}/${name}`,
     },
 }
