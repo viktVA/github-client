@@ -27,32 +27,40 @@ jobs:
         run: |
           DIFF=$(cat pr_diff.txt | head -c 8000)
           
-          RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "content-type: application/json" \
-            --data-binary "{
-              \"model\": \"claude-haiku-4-5-20251001\",
-              \"max_tokens\": 1024,
-              \"messages\": [{
-                \"role\": \"user\",
-                \"content\": \"Сделай code review. Найди баги и проблемы. Отвечай на русском. Diff:\\n$DIFF\"
-              }]
-            }")
+          python3 << 'EOF'
+          import os, json, urllib.request
           
-          echo "API Response: $RESPONSE"
+          diff = open("pr_diff.txt").read()[:8000]
           
-          ERROR=$(echo $RESPONSE | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('error', {}).get('message', ''))" 2>/dev/null)
+          payload = json.dumps({
+            "model": "claude-haiku-4-5-20251001",
+            "max_tokens": 1024,
+            "messages": [{
+              "role": "user",
+              "content": f"Сделай code review. Найди баги и проблемы. Отвечай на русском. Diff:\n{diff}"
+            }]
+          }).encode()
           
-          if [ -n "$ERROR" ]; then
-            echo "API Error: $ERROR"
-            exit 1
-          fi
+          req = urllib.request.Request(
+            "https://api.anthropic.com/v1/messages",
+            data=payload,
+            headers={
+              "x-api-key": os.environ["ANTHROPIC_API_KEY"],
+              "anthropic-version": "2023-06-01",
+              "content-type": "application/json"
+            }
+          )
           
-          COMMENT=$(echo $RESPONSE | python3 -c "import sys,json; print(json.load(sys.stdin)['content'][0]['text'])")
+          with urllib.request.urlopen(req) as r:
+            result = json.loads(r.read())
+          
+          comment = result["content"][0]["text"]
+          
+          with open("review_comment.txt", "w") as f:
+            f.write("## 🤖 AI Code Review\n\n" + comment)
+          
+          EOF
           
           gh pr comment ${{ github.event.pull_request.number }} \
             --repo ${{ github.repository }} \
-            --body "## 🤖 AI Code Review
-
-          $COMMENT"
+            --body-file review_comment.txt
