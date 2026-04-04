@@ -17,6 +17,7 @@ import type {Repo} from "@custom_types/repos";
 
 
 const RepoListPage = () => {
+    
     const [repos, setRepos] = useState<Repo[]>([]);
     const [URLSearcParams] = useSearchParams();
     const page = Number(URLSearcParams.get("page")) || 1;
