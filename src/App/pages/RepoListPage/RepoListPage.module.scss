@@ -74,6 +74,12 @@
     @media (min-width: 1024px ) {
       grid-template-columns: repeat(3, minmax(200px, 1fr));
     }
+    @media (min-width: 2000px ) {
+      grid-template-columns: repeat(4, minmax(200px, 1fr));
+    }
+    @media (min-width: 2500px ) {
+      grid-template-columns: repeat(5, minmax(200px, 1fr));
+    }
 
 
 

@@ -13,7 +13,11 @@ import {workDate} from "@utils/workDate";
 import {routes} from "@config/routes";
 import type {Repo} from "@custom_types/repos";
 
+
+
+
 const RepoListPage = () => {
+    
     const [repos, setRepos] = useState<Repo[]>([]);
     const [URLSearcParams] = useSearchParams();
     const page = Number(URLSearcParams.get("page")) || 1;
@@ -39,8 +43,10 @@ const RepoListPage = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 893) {
+            if (window.innerWidth < 893 || (2500 > window.innerWidth && window.innerWidth >= 2000)) {
                 setCountRep(8);
+            }else if(2500 <= window.innerWidth) {
+                setCountRep(10);
             } else {
                 setCountRep(9);
             }
