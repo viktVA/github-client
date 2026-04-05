@@ -8,29 +8,27 @@
 
   &__container {
 
-    width: 85%;
-    margin: 0 auto;
+    @include page-container;
+
   }
 
   &__loader {
 
-    display: flex;
-    justify-content: center;
+    @include flex-center($align: center);
+
     padding: 100px 0;
   }
 
   &__header {
+    @include flex-center($justify: start);
 
-    display: flex;
-    align-items: center;
     gap: 16px;
     margin-bottom: 20px;
   }
 
   &__back {
 
-    display: flex;
-    align-items: center;
+    @include flex-center($justify: start);
     background: none;
     border: none;
     cursor: pointer;
@@ -50,6 +48,23 @@
     border-radius: $border-radius;
     object-fit: cover;
     flex-shrink: 0;
+  }
+
+  &__title {
+    h1 {
+
+      @media (max-width: 1024px ) {
+        font-size: 40px;
+      }
+
+      @media (max-width: 768px ) {
+        font-size: 34px;
+      }
+
+      @media (max-width: 480px ) {
+        font-size: 30px;
+      }
+    }
   }
 
   &__homepage {
@@ -125,9 +140,8 @@
 }
 
 .stat {
+  @include flex-center($justify: start);
 
-  display: flex;
-  align-items: center;
   gap: 6px;
 }
 
@@ -139,9 +153,7 @@
 }
 
 .contributor {
-
-  display: flex;
-  align-items: center;
+  @include flex-center($justify: start);
   gap: 12px;
   text-decoration: none;
   color: inherit;
@@ -185,9 +197,8 @@
   gap: 8px 20px;
 
   &__item {
+    @include flex-center($justify: start);
 
-    display: flex;
-    align-items: center;
     gap: 6px;
   }
 
