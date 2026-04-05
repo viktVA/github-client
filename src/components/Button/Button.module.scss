@@ -1,6 +1,7 @@
 @use '@components/variables' as *;
 
 .button {
+
   --color-text: #{$button-primary-text};
   --color-bg: #{$button-primary-bg};
 
@@ -15,25 +16,27 @@
   cursor: pointer;
 
   div {
+
     display: inline-block;
     margin-right: $space-xxs;
   }
 
   &__loading {
+
     padding-block: $space-s;
     transition: background-color 0.3s ease;
 
 
     &_color {
+
       --color-bg: #{$button-primary-bg} !important;
       --color-text: #{$button-primary-text};
-
-
     }
   }
 
 
   &:hover:not(:disabled) {
+
     --color-text: #{$button-primary-text-hover};
     --color-bg: #{$button-primary-bg-hover};
 
@@ -41,16 +44,17 @@
 
 
   &:active:not(:disabled) {
+
     --color-text: #{$button-primary-text-active};
     --color-bg: #{$button-primary-bg-active};
 
   }
 
   &:disabled {
+
     --color-text: #{$button-primary-text-disabled};
     --color-bg: #{$button-primary-bg-disabled};
 
     cursor: default;
   }
-
 }
