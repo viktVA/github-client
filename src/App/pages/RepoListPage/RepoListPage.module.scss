@@ -71,7 +71,7 @@
 }
 
 .input-search {
-  @include flex-center(space-between, stratch);
+  @include flex-center($justify:space-between, $align:stretch);
 
 
   &__input {

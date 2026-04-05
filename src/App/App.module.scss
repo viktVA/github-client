@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 .app__header {
-    @include flex-center($justify: space-between, $align: stretch);
+    @include flex-center($justify: space-between);
 
     border-bottom: 2px solid #d9d9d9;
     padding-block: 16px;
