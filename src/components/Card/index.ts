@@ -1,2 +1,2 @@
 export { default } from './Card';
-export * from '@components/Card';
+export * from './Card';

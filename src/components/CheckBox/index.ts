@@ -1,2 +1,2 @@
 export { default } from './CheckBox';
-export * from '@components/CheckBox';
+export * from './CheckBox';

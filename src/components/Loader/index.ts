@@ -1,2 +1,2 @@
 export { default } from './Loader';
-export * from '@components/Loader';
+export * from './Loader';
