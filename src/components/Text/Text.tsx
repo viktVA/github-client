@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classNames from "classnames";
-import styles from './Text.module.scss';
+import styles from '@components/Text/Text.module.scss';
+
 export type TextProps = {
   /** Дополнительный класс */
   className?: string;
