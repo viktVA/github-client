@@ -1,10 +1,12 @@
 @use '@components/variables' as *;
 
 .checkBox {
+
   $self: &;
   --checkbox-color: #{$checkbox-check};
   --color-bg: #{$checkbox-bg};
   --border-color: #{$checkbox-border};
+
   display: block;
   position: relative;
   width: 40px;
@@ -15,6 +17,7 @@
   cursor: pointer;
 
   &__input {
+
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -23,12 +26,14 @@
     height: 0;
 
     &:checked + #{$self}__icon {
+
       opacity: 1;
     }
 
 
   }
   &__icon {
+
     --checkbox-color: #{$checkbox-check};
 
     position: absolute;
@@ -45,22 +50,21 @@
       --checkbox-color: #{$checkbox-check-disabled};
       --color-bg: #{$checkbox-bg-disabled};
       --border-color: #{$checkbox-border-disabled};
-
     }
 
   }
   &:hover {
+
     --checkbox-color: #{$checkbox-check-hover};
     --color-bg: #{$checkbox-bg-hover};
     --border-color: #{$checkbox-border-hover};
-
   }
 
   &_disabled {
-    pointer-events: none;
+
     --checkbox-color: #{$checkbox-check-disabled};
     --color-bg: #{$checkbox-bg-disabled};
     --border-color: #{$checkbox-border-disabled};
-
+    pointer-events: none;
   }
 }
