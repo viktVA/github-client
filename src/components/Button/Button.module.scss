@@ -5,14 +5,13 @@
   --color-text: #{$button-primary-text};
   --color-bg: #{$button-primary-bg};
 
+  @include flex-center($justify: start);
   min-height: 52px;
   padding: 17px $space-l;
   background-color: var(--color-bg);
   color: var(--color-text);
   border: none;
   border-radius: $border-radius;
-  display: flex;
-  align-items: center;
   cursor: pointer;
 
   div {

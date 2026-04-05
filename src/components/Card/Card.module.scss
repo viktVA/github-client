@@ -60,11 +60,10 @@
     }
 
     .card__footer {
+      @include flex-center($justify: space-between);
 
-      display: flex;
-      justify-content: space-between;
       margin-top: $space-l;
-      align-items: center;
+
 
     }
   }

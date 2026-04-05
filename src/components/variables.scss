@@ -47,6 +47,59 @@ $space-xxs: 8px;
 
 $brand: #1f883d;
 
+@mixin flex-center($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin page-container(){
+  width: 85%;
+  margin: 0 auto;
+}
+$bp-xs: 375px;
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1440px;
+
+
+@mixin title-xl {
+  @media (max-width: $bp-xl) {
+    font-size: 44px;
+    @content;
+  }
+}
+
+@mixin title-lg {
+  @media (max-width: $bp-lg) {
+    font-size: 40px;
+    @content;
+  }
+}
+
+@mixin title-md {
+  @media (max-width: $bp-md) {
+    font-size: 34px;
+    @content;
+  }
+}
+
+@mixin title-sm {
+  @media (max-width:$bp-sm) {
+    font-size: 30px;
+    @content;
+  }
+}
+@mixin title-xs {
+  @media (max-width: $bp-xs) {
+    font-size: 28px;
+    @content;
+  }
+}
+
+
+
 :root {
 
   --loader-bg: #1f883d;

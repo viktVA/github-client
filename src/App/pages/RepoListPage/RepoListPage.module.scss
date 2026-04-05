@@ -8,8 +8,7 @@
 
   &__container {
 
-    width: 85%;
-    margin: 0 auto;
+    @include page-container;
   }
 
   &__title {
@@ -19,17 +18,11 @@
 
     h1 {
 
-      @media (max-width: 1024px ) {
-        font-size: 40px;
-      }
-
-      @media (max-width: 768px ) {
-        font-size: 34px;
-      }
-
-      @media (max-width: 375px ) {
-        font-size: 30px;
-      }
+      @include title-xl();
+      @include title-lg();
+      @include title-md();
+      @include title-sm();
+      @include title-xs();
     }
 
   }
@@ -78,9 +71,8 @@
 }
 
 .input-search {
+  @include flex-center($justify:space-between, $align:stretch);
 
-  display: flex;
-  justify-content: space-between;
 
   &__input {
 
@@ -117,10 +109,7 @@
 }
 
 .pages {
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
 
   &__arrow {
 
