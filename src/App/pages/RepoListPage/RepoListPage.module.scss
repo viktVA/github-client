@@ -8,8 +8,7 @@
 
   &__container {
 
-    width: 85%;
-    margin: 0 auto;
+    @include page-container;
   }
 
   &__title {
@@ -78,9 +77,8 @@
 }
 
 .input-search {
+  @include flex-center(space-between, stratch);
 
-  display: flex;
-  justify-content: space-between;
 
   &__input {
 
@@ -117,10 +115,7 @@
 }
 
 .pages {
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
 
   &__arrow {
 

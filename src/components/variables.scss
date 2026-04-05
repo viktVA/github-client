@@ -47,6 +47,17 @@ $space-xxs: 8px;
 
 $brand: #1f883d;
 
+@mixin flex-center($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin page-container(){
+  width: 85%;
+  margin: 0 auto;
+}
+
 :root {
 
   --loader-bg: #1f883d;
