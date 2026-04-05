@@ -18,17 +18,11 @@
 
     h1 {
 
-      @media (max-width: 1024px ) {
-        font-size: 40px;
-      }
-
-      @media (max-width: 768px ) {
-        font-size: 34px;
-      }
-
-      @media (max-width: 375px ) {
-        font-size: 30px;
-      }
+      @include title-xl();
+      @include title-lg();
+      @include title-md();
+      @include title-sm();
+      @include title-xs();
     }
 
   }
