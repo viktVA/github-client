@@ -2,6 +2,7 @@
 @import '../../styles/Roboto/fonts.css';
 
 .input  {
+
   --color-bg: #{$input-bg};
   --border-bg: #{$input-border};
   --color-text: #{$input-text};
@@ -22,8 +23,8 @@
   width: 100%;
 
   div {
-    display: inline-block;
 
+    display: inline-block;
   }
 
   input {
@@ -38,7 +39,9 @@
     height: auto;
 
     &::placeholder {
+
       --color-text: #{$input-placeholder};
+
       color: var(--color-text);
 
       font-family: 'Roboto';
@@ -46,9 +49,11 @@
     }
 
     &:disabled {
+
       --color-bg: #{$input-bg-disabled};
       --border-bg: #{$input-border-disabled};
       --color-text: #{$input-text-disabled};
+
       background: var(--color-bg);
       border-color: var(--border-bg);
       color: var(--color-text);
@@ -59,19 +64,21 @@
   }
 
   .afterSlot {
+
     display: inline-block;
     height: 24px;
     width: 24px;
+
     margin-left: $space-xxs;
   }
 
 
   &:focus-within {
+
     --color-bg: #{$input-bg-focus};
     --border-bg: #{$input-border-focus};
     --color-text: #{$input-text-focus};
 
     border: 1px solid #{$input-border-focus};
   }
-
 }

@@ -2,49 +2,65 @@
 @import '../../styles/Roboto/fonts.css';
 
 .text {
+
   font-weight: 400;
   font-family: 'Roboto';
+
   &_color{
 
     &-primary {
+
       color: $text-primary;
     }
+
     &-secondary {
+
       color: $text-secondary;
     }
+
     &-accent {
+
       color: $text-accent;
     }
   }
 
   &_view {
+
     &-title {
+
       font-weight: 700;
       font-size: 44px;
-
     }
+
     &-button {
+
       font-size: 18px;
     }
   }
 
   &_weight{
+
     &-normal {
+
       font-weight: 400;
     }
+
     &-medium {
+
       font-weight: 500;
     }
+
     &-bold {
+
       font-weight: 700;
     }
   }
 
   &_clamp {
+
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-
   }
 }
 
