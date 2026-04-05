@@ -1,5 +1,5 @@
 import {Outlet, useNavigate} from "react-router-dom";
-import styles from './App.module.scss'
+import styles from '@App/App.module.scss'
 import Text from "@components/Text";
 import logo from '@assets/icons/logo_github.png';
 import avatar from '@assets/icons/user_avatar.png';

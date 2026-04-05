@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from "classnames";
-import styles from './Checkbox.module.scss';
-import CheckIcon from "../icons/CheckIcon";
+import styles from '@components/CheckBox/Checkbox.module.scss';
+import CheckIcon from "@components/icons/CheckIcon";
 
 
 export type CheckBoxProps = Omit<
