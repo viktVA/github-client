@@ -3,6 +3,7 @@ import styles from '@App/App.module.scss'
 import Text from "@components/Text";
 import logo from '@assets/icons/logo_github.png';
 import avatar from '@assets/icons/user_avatar.png';
+import {routes} from "@config/routes";
 
 
 
@@ -11,7 +12,7 @@ function App() {
     return (
         <div className={styles["app"]}>
             <div className={styles['app__header']}>
-                <div className={styles['header__brand']} onClick={() => navigate('/repositories?page=1')}>
+                <div className={styles['header__brand']} onClick={() => navigate(routes.repositories.create())}>
                     <div className={styles['header__logo']}
                         >
                         <img src={logo}/>
