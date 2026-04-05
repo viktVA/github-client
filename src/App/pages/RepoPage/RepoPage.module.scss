@@ -52,18 +52,12 @@
 
   &__title {
     h1 {
+      @include title-xl();
+      @include title-lg();
+      @include title-md();
+      @include title-sm();
+      @include title-xs();
 
-      @media (max-width: 1024px ) {
-        font-size: 40px;
-      }
-
-      @media (max-width: 768px ) {
-        font-size: 34px;
-      }
-
-      @media (max-width: 480px ) {
-        font-size: 30px;
-      }
     }
   }
 
