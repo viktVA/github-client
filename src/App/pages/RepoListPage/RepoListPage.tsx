@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {Link, useNavigate, useSearchParams} from 'react-router-dom';
 import {getRepos} from "@api/getRepos";
 import styles from './RepoListPage.module.scss';
@@ -25,6 +25,8 @@ const RepoListPage = () => {
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const sentinelRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
+    const [valueSearchInput, setValueSearchInput] = useState<string>('');
+    const [activeFilter, setActiveFilter] = useState<string>('');
 
     // Запрос к api
     useEffect(() => {
@@ -35,6 +37,7 @@ const RepoListPage = () => {
                 setRepos(result);
             } catch (error) {
                 console.error(error);
+                setRepos([]);
             } finally {
                 setIsLoading(false);
             }
@@ -65,7 +68,12 @@ const RepoListPage = () => {
         }
     }, [page, isMobile]);
 
-    const maxPage = Math.ceil(repos.length / countRep);
+    // Фильтрация применяется только после нажатия кнопки поиска
+    const filteredRepos = activeFilter
+        ? repos.filter(r => r.name.toLowerCase().includes(activeFilter.toLowerCase()))
+        : repos;
+
+    const maxPage = Math.ceil(filteredRepos.length / countRep);
 
 
     const handleLoadMore = useCallback(() => {
@@ -128,16 +136,29 @@ const RepoListPage = () => {
     };
 
     // InputSearch
-    const [valueSearchInput, setValueSearchInput] = useState<string>('');
-
     const handleChangeSearchInput = (value: string): void => {
         setValueSearchInput(value);
     };
 
+    const handleSearch = (): void => {
+        setActiveFilter(valueSearchInput.trim());
+        if (page !== 1) navigate('/repositories?page=1');
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (e.key === 'Enter') handleSearch();
+    };
+
+    // Крестик: очищает ввод и сбрасывает фильтр
+    const handleClear = (): void => {
+        setValueSearchInput('');
+        setActiveFilter('');
+        if (page !== 1) navigate('/repositories?page=1');
+    };
 
     const displayedRepos = isMobile
-        ? repos.slice(0, page * countRep)
-        : repos.slice((page - 1) * countRep, Math.min(repos.length, page * countRep));
+        ? filteredRepos.slice(0, page * countRep)
+        : filteredRepos.slice((page - 1) * countRep, Math.min(filteredRepos.length, page * countRep));
 
     return (
         <div className={styles["list-repositories"]}>
@@ -161,8 +182,16 @@ const RepoListPage = () => {
                                    onChange={handleChangeSearchInput}
                                    value={valueSearchInput}
                                    placeholder={'Enter organization name'}
+                                   onKeyDown={handleKeyDown}
+                                   afterSlot={valueSearchInput && (
+                                       <button className={styles["input-search__clear"]} onClick={handleClear} type="button">
+                                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                               <path d="M12 4L4 12M4 4L12 12" stroke="#AFADB5" strokeWidth="1.5" strokeLinecap="round"/>
+                                           </svg>
+                                       </button>
+                                   )}
                             />
-                            <Button className={styles["input-search__button"]}>
+                            <Button className={styles["input-search__button"]} onClick={handleSearch}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clipPath="url(#clip0_508_313)">
                                         <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="white"/>
@@ -183,6 +212,11 @@ const RepoListPage = () => {
                         </div>
                     ) : (
                         <>
+                            {displayedRepos.length === 0 ? (
+                                <div className={styles["list-repositories__empty"]}>
+                                    <Text view={'p-18'} color={'secondary'}>Ничего не найдено</Text>
+                                </div>
+                            ) : (
                             <div className={classNames(styles["list-repositories__cards"], styles["cards-grid"])}>
                                 <div className={styles["cards-grid__items"]}>
                                     {displayedRepos.map(item => (
@@ -209,6 +243,7 @@ const RepoListPage = () => {
                                     ))}
                                 </div>
                             </div>
+                            )}
 
                             {isMobile ? (
                                 // Сентинел для IntersectionObserver — триггер подгрузки следующей страницы
