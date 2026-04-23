@@ -15,6 +15,8 @@ import {routes} from "@config/routes";
 import type {Repo} from "@custom_types/repos";
 
 
+const ORGS = ['yandex', 'tinkoff', 'avito', 'wildberries-tech', 'ozontech'];
+
 const RepoListPage = () => {
 
     const [repos, setRepos] = useState<Repo[]>([]);
@@ -27,14 +29,18 @@ const RepoListPage = () => {
     const navigate = useNavigate();
     const [valueSearchInput, setValueSearchInput] = useState<string>('');
     const [activeFilter, setActiveFilter] = useState<string>('');
+    const [valueType, setValueType] = useState<Option[]>([]);
 
-    // Запрос к api
     useEffect(() => {
         const fetch = async () => {
             try {
                 setIsLoading(true);
-                const result = await getRepos();
-                setRepos(result);
+                const results = await Promise.allSettled(ORGS.map(org => getRepos(org)));
+                const combined: Repo[] = results
+                    .filter((r): r is PromiseFulfilledResult<Repo[]> => r.status === 'fulfilled')
+                    .flatMap(r => r.value)
+                    .sort((a, b) => a.name.localeCompare(b.name));
+                setRepos(combined);
             } catch (error) {
                 console.error(error);
                 setRepos([]);
@@ -68,10 +74,15 @@ const RepoListPage = () => {
         }
     }, [page, isMobile]);
 
-    // Фильтрация применяется только после нажатия кнопки поиска
-    const filteredRepos = activeFilter
-        ? repos.filter(r => r.name.toLowerCase().includes(activeFilter.toLowerCase()))
+    // Фильтр по выбранным организациям (применяется сразу при выборе)
+    const orgFilteredRepos = valueType.length > 0
+        ? repos.filter(r => valueType.some(opt => opt.key.toLowerCase() === r.owner.login.toLowerCase()))
         : repos;
+
+    // Фильтр по названию — применяется только после нажатия кнопки поиска
+    const filteredRepos = activeFilter
+        ? orgFilteredRepos.filter(r => r.name.toLowerCase().includes(activeFilter.toLowerCase()))
+        : orgFilteredRepos;
 
     const maxPage = Math.ceil(filteredRepos.length / countRep);
 
@@ -120,15 +131,20 @@ const RepoListPage = () => {
     const strokeArrowLeft = (page === 1) ? '#AFADB5' : '#151411';
     const strokeArrowRight = (page === maxPage) ? '#AFADB5' : '#151411';
 
-    // MultiDropDown
-    const options: Option[] = [{'key': 'org', 'value': 'Organization'}];
-    const [valueType, setValueType] = useState<Option[]>([]);
+    // MultiDropDown — фильтр по организациям
+    const options: Option[] = [
+        {key: 'yandex', value: 'Яндекс'},
+        {key: 'tinkoff', value: 'Т банк'},
+        {key: 'avito', value: 'Авито'},
+        {key: 'wildberries-tech', value: 'Wildberries'},
+        {key: 'ozontech', value: 'Озон'},
+    ];
 
     const getTitle = (value: Option[]): string => {
         if (value.length > 0) {
-            return value.map(item => item['value']).join(' ,');
+            return value.map(item => item.value).join(', ');
         }
-        return 'Type';
+        return 'Organizations';
     };
 
     const handleChangeType = (value: Option[]): void => {
