@@ -1,8 +1,8 @@
 import {Navigate} from "react-router-dom";
 import type {RouteObject} from  "react-router-dom";
-import App from "../App";
-import RepoListPage from "../App/pages/RepoListPage";
-import RepoPage from "../App/pages/RepoPage";
+import App from "@App";
+import RepoListPage from "@App/pages/RepoListPage";
+import RepoPage from "@App/pages/RepoPage";
 import {routes} from "@config/routes";
 
 

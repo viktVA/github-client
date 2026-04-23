@@ -1,9 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
-import styles from './MultiDropdown.module.scss';
-import Input from "../Input";
-import ArrowDownIcon from "../icons/ArrowDownIcon";
-import Text from "../Text";
+import styles from '@components/MultiDropdown/MultiDropdown.module.scss';
+import Input from "@components/Input";
+import ArrowDownIcon from "@components/icons/ArrowDownIcon";
+import Text from "@components/Text";
+
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
   key: string;

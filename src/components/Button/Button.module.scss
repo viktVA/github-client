@@ -1,39 +1,41 @@
 @use '@components/variables' as *;
 
 .button {
+
   --color-text: #{$button-primary-text};
   --color-bg: #{$button-primary-bg};
 
+  @include flex-center($justify: start);
   min-height: 52px;
   padding: 17px $space-l;
   background-color: var(--color-bg);
   color: var(--color-text);
   border: none;
   border-radius: $border-radius;
-  display: flex;
-  align-items: center;
   cursor: pointer;
 
   div {
+
     display: inline-block;
     margin-right: $space-xxs;
   }
 
   &__loading {
+
     padding-block: $space-s;
     transition: background-color 0.3s ease;
 
 
     &_color {
+
       --color-bg: #{$button-primary-bg} !important;
       --color-text: #{$button-primary-text};
-
-
     }
   }
 
 
   &:hover:not(:disabled) {
+
     --color-text: #{$button-primary-text-hover};
     --color-bg: #{$button-primary-bg-hover};
 
@@ -41,16 +43,17 @@
 
 
   &:active:not(:disabled) {
+
     --color-text: #{$button-primary-text-active};
     --color-bg: #{$button-primary-bg-active};
 
   }
 
   &:disabled {
+
     --color-text: #{$button-primary-text-disabled};
     --color-bg: #{$button-primary-bg-disabled};
 
     cursor: default;
   }
-
 }

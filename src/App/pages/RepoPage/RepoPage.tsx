@@ -80,7 +80,7 @@ const RepoPage = () => {
         <div className={styles['repo-page']}>
             <div className={styles['repo-page__container']}>
 
-                {/* Header: back + avatar + name */}
+
                 <div className={styles['repo-page__header']}>
                     <button className={styles['repo-page__back']} onClick={() => navigate(-1)}>
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,9 +96,12 @@ const RepoPage = () => {
                         src={repo.owner.avatar_url}
                         alt={repo.owner.login}
                     />
-                    <Text tag="h1" view="title" color="primary">
-                        {repo.name}
-                    </Text>
+                    <div className={styles['repo-page__title']}>
+                        <Text  tag="h1" view="title" color="primary">
+                            {repo.name}
+                        </Text>
+                    </div>
+
                 </div>
 
                 {/* Homepage link */}
